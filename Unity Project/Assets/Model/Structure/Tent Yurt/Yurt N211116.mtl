@@ -1,0 +1,66 @@
+# 3ds Max Wavefront OBJ Exporter v0.94b - (c)2007 guruware
+# File Created: 21.11.2016 11:52:29
+
+newmtl _Yurt_N211116uzor
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 1.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.8745 0.4863 0.4078
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka D:\New folder gsm\uzor.jpg
+	map_Kd D:\New folder gsm\uzor.jpg
+	map_bump -bm 0.0200 D:\New folder gsm\uzor.jpg
+	bump -bm 0.0200 D:\New folder gsm\uzor.jpg
+
+newmtl _Yurt_N211116standart_textile
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 1.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.4078 0.4078 0.4078
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka D:\New folder gsm\koshma.jpg
+	map_Kd D:\New folder gsm\koshma.jpg
+	map_bump -bm 0.0200 D:\New folder gsm\koshma.jpg
+	bump -bm 0.0200 D:\New folder gsm\koshma.jpg
+
+newmtl _Yurt_N211116rape
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 1.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.5961 0.4941 0.4078
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka D:\New folder gsm\02.jpg
+	map_Kd D:\New folder gsm\02.jpg
+	map_bump -bm 0.0200 D:\New folder gsm\02.jpg
+	bump -bm 0.0200 D:\New folder gsm\02.jpg
+
+newmtl _Yurt_N211116doors
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 1.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.8824 0.8863 0.4078
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka D:\New folder gsm\dver.jpg
+	map_Kd D:\New folder gsm\dver.jpg
+	map_bump -bm 0.0200 D:\New folder gsm\dver.jpg
+	bump -bm 0.0200 D:\New folder gsm\dver.jpg

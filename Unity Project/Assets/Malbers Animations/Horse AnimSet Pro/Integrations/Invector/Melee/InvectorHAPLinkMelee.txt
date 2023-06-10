@@ -1,0 +1,438 @@
+﻿using UnityEngine;
+using System.Collections;
+using MalbersAnimations.HAP;
+using MalbersAnimations.Weapons;
+using MalbersAnimations;
+using System;
+using Invector.vItemManager;
+using Invector.vMelee;
+using Invector.vCharacterController;
+using UnityEngine.Events;
+
+/// <summary>
+/// This is the link between Invector 1.1.5 and Malbers HAP 3.1.1
+/// </summary>
+namespace Invector.CharacterController
+{
+    public class InvectorHAPLinkMelee : InvectorHAPLink
+    {
+        protected RiderCombat riderCombat;                              //Reference for the RiderCombat
+        protected vCollectMeleeControl v_CollectMeleeControl;           //Reference for the Invector's vCollectMeleeControl
+        protected vMeleeManager v_MeleeManager;                         //Reference for the Invector's Melee Manager    
+        protected vItemManager.vItemManager v_ItemManager;              //Reference for the Invector's Inventory
+        protected vMeleeCombatInput v_MeleeCombatInput;
+
+        private vEquipArea ActiveEquipArea;
+        private vItem EquipedItem;
+
+
+        [Space] internal GameObject weapon;                      //Current Active instantiated gameobject Weapon (Only Right Hand Weapon)
+        /// <summary>It allows the rider use weapons while Riding</summary>
+        [Space, Tooltip("It allows the rider use weapons while Riding")]
+        public bool AllowWeaponsRiding = true;
+        /// <summary>Let everybody knows that the Rider mount the animal with a weapon equipped</summary>
+        [Header("Events")]
+        public UnityEvent OnMountWithWeapon = new UnityEvent(); 
+
+        /// <summary>Is the Invector equipped weapon compatible with HAP?</summary>
+        public bool IsCompatible { get; protected set; }
+        protected bool inventoryIsOpen;                      //State  of the inventory
+        protected WA CurrentWeaponAction;                    //Well that...
+
+        /// <summary> Current Invector Equiped Weapon Instance on the scene </summary>
+        protected virtual GameObject Weapon
+        {
+            get { return weapon; }
+            set
+            {
+                weapon = value;
+                IsCompatible = value ? (value.GetComponent<IMWeapon>() != null) : false;
+            }
+        }
+
+        void Awake() { InitializeLink(); }
+
+        protected override void InitializeLink()
+        {
+            base.InitializeLink();
+
+            v_MeleeManager = GetComponent<vMeleeManager>();
+            riderCombat = GetComponent<RiderCombat>();                     //Get the Rider Combat
+            v_ItemManager = GetComponent<vItemManager.vItemManager>();                  //Get the Invector's Inventory
+            v_CollectMeleeControl = GetComponent<vCollectMeleeControl>();  //Get the Invector's vCollectMeleeControl
+            v_MeleeCombatInput = VInput as vMeleeCombatInput;
+
+            //Add Listeners for Unity Events
+            if (riderCombat)
+            {
+                riderCombat.ExitCombatOnDismount = false;
+                riderCombat.OnAttack.AddListener(OnAttack);
+                riderCombat.OnWeaponAction.AddListener(OnWeaponAction);
+            }
+
+            if (v_ItemManager)
+            {
+                v_ItemManager.onEquipItem.AddListener(OnEquipFromInventory);                    //Listen to Equip from Inventory
+                v_ItemManager.onUnequipItem.AddListener(OnUnEquipFromInventory);                //Listen to Unequip from Inventory     
+
+                v_ItemManager.onOpenCloseInventory.AddListener(onOpenCloseInventory);
+
+                var equipPointR = v_ItemManager.equipPoints.Find(p => p.equipPointName == "RightArm");
+                if (equipPointR != null)
+                    equipPointR.onInstantiateEquiment.AddListener(Equip_from_Instatiate_RightHand);      //Add Listener for the Right Hand which is the ones that holds the Melee Weapons
+                else
+                {
+                    Debug.LogWarning("The Equip Point 'RightArm' Was Not Found");
+                }
+
+                var equipPointL = v_ItemManager.equipPoints.Find(p => p.equipPointName == "LeftArm");
+
+                if (equipPointL != null)
+                    equipPointL.onInstantiateEquiment.AddListener(Equip_from_Instatiate_LeftHand);      //Add Listener for the Right Hand which is the ones that holds the Melee Weapons
+                else
+                {
+                    Debug.LogWarning("The Equip Point 'LeftArm' Was Not Found");
+                }
+            }
+        }
+
+        #region Event Listeners Rider
+        public override void OnStartMounting()
+        {
+            base.OnStartMounting();
+
+            var drawHide = GetComponent<vDrawHideMeleeWeapons>();               //IMPORTANT!  DRAW HIDE WEAPONS HIDE IT AUTOMATICALLY 
+            if (drawHide) drawHide.hideWeaponsAutomatically = false;
+
+            //If is NOT using the Inventory System  Lock the 'Drop Weapon' (Left Right Key) from the Collect System
+            if (v_CollectMeleeControl)
+            {
+                v_CollectMeleeControl.unequipLeftInput.useInput = false;
+                v_CollectMeleeControl.unequipRightInput.useInput = false;
+            }
+
+            if (v_MeleeManager.rightWeapon)
+            {
+                Weapon = v_MeleeManager.rightWeapon.gameObject;         //Use the weapon on the Right Hand
+            }
+            else if (v_MeleeManager.leftWeapon && v_MeleeManager.leftWeapon.meleeType != vMeleeType.OnlyDefense)
+            {
+                Weapon = v_MeleeManager.leftWeapon.gameObject;         //Use the weapon on the Right Hand
+            }
+
+            if (Weapon)                                           //Update the weapons for the Shooter   
+            {
+                if (!IsCompatible || !AllowWeaponsRiding)
+                {
+                    Weapon.SetActive(false);                                    //Hide the Weapon if is not compatible
+                }
+                else
+                {
+                    riderCombat.SetWeaponBeforeMounting(Weapon);    //If do has the ImWeapon Interface LetKnow the RiderCombat that can Use the weapon
+                    OnMountWithWeapon.Invoke();                     //Let everybondy knows that is mounting with a weapon on the Hand    
+                }
+            }
+
+            if (Is_Left_WeaponShield())                                         //Hide the Left Weapon if is a shield
+            {
+                v_MeleeManager.leftWeapon.gameObject.SetActive(false);
+            }
+
+            if (!AllowWeaponsRiding)
+            {
+                v_MeleeCombatInput.SetLockMeleeInput(true);
+                riderCombat.Active = false;
+            }
+        }
+
+        public override void OnStartDismounting()
+        {
+            transform.rotation = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation; //Double check for tilting characters
+            riderCombat.ResetRiderCombat(false);                                   //Make sure that the Rider Combat is Reseted ... False means that you can keep the Active weapon after dismounting
+            riderCombat.ActiveWeapon?.ResetWeapon();
+
+            CameraState(Default);                                                       //Change Camera State to default
+
+            if (riderCombat)
+            {
+                if (riderCombat.UseHolders && !riderCombat.CombatMode && Weapon)        //If the Weapon is Stored and you're using holder and there's an Active Weapon 
+                    riderCombat.Draw_Weapon();                                          //Draw the weapon on dismounting
+            }
+            vCamera.RemoveLockTarget();                                                 //if the camera was on LockonTarget Unlock it
+        }
+
+        public override void OnEndDismounting()
+        {
+            base.OnEndDismounting();
+
+            var drawHide = GetComponent<vDrawHideMeleeWeapons>();                       //IMPORTANT!  DRAW HIDE WEAPONS HIDE IT AUTOMATICALLY 
+            if (drawHide) drawHide.hideWeaponsAutomatically = true;
+
+            if (!AllowWeaponsRiding)
+            {
+                v_MeleeCombatInput.SetLockMeleeInput(false);
+                riderCombat.Active = false;
+            }
+
+            //If is NOT using the Inventory System..  Restore the Drop Weapon from the Collect System
+            if (v_CollectMeleeControl)
+            {
+                v_CollectMeleeControl.unequipLeftInput.useInput = true;
+                v_CollectMeleeControl.unequipRightInput.useInput = true;
+            }
+
+            if (v_MeleeManager && v_MeleeManager.rightWeapon)
+                v_MeleeManager.rightWeapon.gameObject.SetActive(true);                              //Show Right Weapon
+
+            if (v_MeleeManager && v_MeleeManager.leftWeapon)
+                v_MeleeManager.leftWeapon.gameObject.SetActive(true);                               //Show Left Weapon
+
+        }
+        #endregion
+
+        ///──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        /// <summary>This will be invoked from the Event vItemManager.onEquipItem (TO EQUIP THE PREFAB)</summary>
+        public virtual void OnEquipFromInventory(vEquipArea equipArea, vItem item)
+        {
+            if (item != equipArea.currentEquipedItem) return;                                                //If the item equiped is not in the correct E
+
+            vMeleeWeapon Item_Melee =
+                item && item.originalObject ? item.originalObject.GetComponent<vMeleeWeapon>() : null;
+
+            if (Item_Melee && Item_Melee.meleeType == vMeleeType.OnlyDefense) return;               //If the Weapon is a Shield skip
+
+            Weapon = item ? item.originalObject : null;
+
+            if (Rider.IsRiding)                                                          //Only Changue Stuff if is Riding
+            {
+                if (!IsCompatible || !AllowWeaponsRiding)
+                {
+                    riderCombat.SetWeaponByInventory(null);                              //If there's no item OR the Next item is NOT compatible The next Rider Weapon is NULL   
+                    if (debug) Debug.Log("If there's no item OR the Next item is NOT compatible The next Rider Weapon is NULL");
+                }
+                else
+                {
+                    riderCombat.ActiveWeaponGameObject = item.originalObject;                   //Set the next weapon as the Item Original Object 
+                    riderCombat.Draw_Weapon();                                          //Draw the Weapon
+                   if(debug) Debug.Log("Set the next weapon: "+item.originalObject+" as the Item Original Object ");
+                }   
+            }
+            ActiveEquipArea = equipArea;
+            EquipedItem = item;
+        }
+
+        public virtual void OnUnEquipFromInventory(vEquipArea equipArea, vItem item)
+        {
+            if (!Rider.IsRiding) return;                                        //Do nothing if the rider is not on the horse    
+            if (!riderCombat.CombatMode) return;                                // Do not Unequip any weapon if the rider is not on Combat Mode
+
+            if (ActiveEquipArea == equipArea && item == EquipedItem)                //is trying to Unequip the Equiped Item
+            {
+            //    Debug.Log("Unequip Same Weapon on the Equip Area");
+                riderCombat.SetWeaponByInventory(null);
+                EquipedItem = null;
+                Weapon = null;
+                riderCombat.ActiveWeaponGameObject = null;
+            }
+        }
+
+        ///──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        /// <summary> Link from the Events of the VItem Manager Equip Points (THIS REPLACES THE PREFAB FOR THE INSTANCE) </summary>
+        public virtual void Equip_from_Instatiate_RightHand(GameObject weapon)
+        {
+            Weapon = weapon;
+            UpdateHitMaskOnWeapon();
+
+            if (!Rider.IsRiding) return;                                        //Do nothing if the rider is not on the horse    
+
+
+            if (!AllowWeaponsRiding)
+            {
+                weapon.SetActive(false);
+                return;
+            }
+
+            if (riderCombat.CombatMode && IsCompatible)
+            {
+                riderCombat.ActiveWeaponGameObject = Weapon; //IMPORTANT UPDATE TO THE INSTANTIATED VERSION OF THE WEAPON
+                riderCombat.ActiveAbility?.ActivateAbility(); //This changes inside the Ability the prefab reference for the Instantiated reference
+            }
+
+            if (!IsCompatible && !IsPrefab(weapon))           //If the Weapon is not Compatible with MalbersWeapons Hide the Weapon
+                weapon.SetActive(false);
+        }
+
+
+        ///──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        /// <summary>Link from the Events of the VItem Manager Equip Points</summary>
+        public virtual void Equip_from_Instatiate_LeftHand(GameObject weapon)
+        {
+            Weapon = weapon;
+            UpdateHitMaskOnWeapon();
+
+            if (!Rider.IsRiding) return;
+
+            if (!AllowWeaponsRiding)
+            {
+                weapon.SetActive(false);
+                return;
+            }
+
+            if (riderCombat.CombatMode && IsCompatible)
+            {
+                riderCombat.ActiveWeaponGameObject = Weapon; //IMPORTANT UPDATE TO THE INSTANTIATED VERSION OF THE WEAPON
+                riderCombat.ActiveAbility?.ActivateAbility(); //This changes inside the Ability the prefab reference for the Instantiated reference
+            }
+
+            var meleeWeapon = weapon.GetComponent<vMeleeWeapon>();
+
+            if (meleeWeapon && meleeWeapon.meleeType == vMeleeType.OnlyDefense) //If the Weapon on the Left Hand is A Shield Ignore it!!
+            {
+                weapon.SetActive(false);
+            }
+            else if (!IsCompatible && !IsPrefab(weapon))           //If the Weapon is not Compatible with MalbersWeapons Hide the Weapon
+            {
+                weapon.SetActive(false);
+            }
+        }
+
+        ///──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        /// <summary>Update the current Weapon Action</summary>
+        public virtual void OnWeaponAction(WA weaponAction)
+        {
+            CurrentWeaponAction = weaponAction;                   //Update the Current Rider WeaponAction
+
+            if (Weapon && riderCombat.UseInventory)
+            {
+                if (CurrentWeaponAction == WA.Idle)                                               //Update in the Rider Combat the Active weapon game Object
+                {
+                    riderCombat.ActiveWeaponGameObject = Weapon;                                  //This will change the Active weapon from the Prefab to the Intantiate Game Object IMPORTANT!!!!!!
+                    Weapon.SetActive(true);
+                }
+            }
+
+            if (Weapon && !IsCompatible)   Weapon.SetActive(false);                               //If the Actual weapon is not compatible set it to false
+        }
+
+        ///──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        /// <summary>Invoked by the Rider Combat</summary>
+        public virtual void OnAttack(IMWeapon iweapon)
+        {
+            if (inventoryIsOpen) return;                                        //Skip if the inventory is Open IMPORTANT!!!!
+
+            if (VInput is vMeleeCombatInput)
+            {
+                var Input = VInput as vMeleeCombatInput;
+
+                Input.OnEnableAttack();                                     //This makes that the Attacking stays true it needs to set it back to false with the line below
+                StartCoroutine(DisableAttack(0.5f, Input));
+            }
+        }
+
+        IEnumerator DisableAttack(float t, vMeleeCombatInput input)
+        {
+            if (t>0)
+            {
+                yield return new WaitForSeconds(t);
+                input.OnDisableAttack();
+            }
+        }
+
+
+        ///──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        /// <summary>Keep the Input Locked in case the inventory is closed </summary>
+        public virtual void onOpenCloseInventory(bool open)
+        {
+            inventoryIsOpen = open;
+
+            riderCombat.Active = !open; //Lock the Rider combat if the inventory is open
+
+            if (Rider.IsRiding && !open)
+            {
+                VInput.SetLockBasicInput(true);         //Double check that the Invector's Input is Locked
+                CameraState(ride);                      //Double Check the camera in the ride state
+            }
+        }
+
+        void Update()
+        {
+            if (Rider)
+            {
+                if (!Rider.IsRiding) return;                //Skip all Below if is not Riding
+                LockOnTarget();
+                NoStaminaLockCombat();                      //Lock Rider Combat when there's no Stamina
+            }
+        }
+
+        protected void UpdateHitMaskOnWeapon()
+        {
+            var MalberSWeapon = Weapon.GetComponent<IMWeapon>();
+            if (MalberSWeapon != null) MalberSWeapon.HitLayer = riderCombat.Aimer.AimLayer; //Update HitMask for the Collectableweapon
+        }
+
+        ///──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        /// <summary>Lock On Target Activation </summary>
+        public virtual void LockOnTarget()
+        {
+            if (v_MeleeCombatInput.lockInput)               //Keep the Lock on Target Input Enabled
+            {
+                v_MeleeCombatInput.SetLockBasicInput(true);
+                riderCombat.Aimer.ForcedTarget = vCamera.lockTarget;
+            }
+        }
+
+        ///──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        /// <summary>Lock Combat if there's no Stamina </summary>
+        protected virtual void NoStaminaLockCombat()
+        {
+            if (riderCombat.CombatMode)
+            {
+                bool lockRiderCombat = (v_TCP.currentStamina < v_MeleeManager.GetAttackStaminaCost());
+
+                if (riderCombat.Active == lockRiderCombat) riderCombat.Active = !lockRiderCombat;
+            }
+        }
+
+        ///──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        /// <summary>Remove All Listeners of all subcribed events </summary>
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+
+            if (riderCombat)
+            {
+                riderCombat.OnAttack.RemoveListener(OnAttack);
+                riderCombat.OnWeaponAction.RemoveListener(OnWeaponAction);
+            }
+
+
+            if (v_ItemManager)
+            {
+                v_ItemManager.onEquipItem.RemoveListener(OnEquipFromInventory);
+                v_ItemManager.onUnequipItem.RemoveListener(OnUnEquipFromInventory);
+
+                var equipPointR = v_ItemManager.equipPoints.Find(p => p.equipPointName == "RightArm");
+
+                if (equipPointR != null)
+                    equipPointR.onInstantiateEquiment.RemoveListener(Equip_from_Instatiate_RightHand);      //Add Listener for the Right Hand which is the ones that holds the Melee Weapons
+
+                var equipPointL = v_ItemManager.equipPoints.Find(p => p.equipPointName == "LeftArm");
+
+                if (equipPointL != null)
+                    equipPointL.onInstantiateEquiment.RemoveListener(Equip_from_Instatiate_LeftHand);      //Add Listener for the Right Hand which is the ones that holds the Melee Weapons
+            }
+        }
+
+        public bool Is_Left_WeaponShield()
+        {
+            if (v_MeleeManager.leftWeapon && v_MeleeManager.leftWeapon.meleeType == vMeleeType.OnlyDefense) return true;
+            return false;
+        }
+
+        /// <summary> is the current gameobject  Prefab <returns></returns>
+        public bool IsPrefab(GameObject gameobject)
+        {
+            return gameObject.scene.buildIndex < 0;
+        }
+    }
+}

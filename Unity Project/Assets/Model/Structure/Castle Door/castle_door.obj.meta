@@ -1,0 +1,448 @@
+fileFormatVersion: 2
+guid: b3ad91fc1018f4645ba79015b38c7031
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: antorchas
+    100002: antorchas_MeshPart0
+    100004: antorchas_MeshPart1
+    100006: antorchas_MeshPart2
+    100008: antorchas_MeshPart3
+    100010: antorchas_MeshPart4
+    100012: antorchas_MeshPart5
+    100014: antorchas_MeshPart6
+    100016: antorchas_MeshPart7
+    100018: arco_puerta_exterior
+    100020: arco_puerta_interior
+    100022: bandera_muro005
+    100024: bandera_muro008
+    100026: bandera_muro009
+    100028: bandera_muro010
+    100030: bandera_muro011
+    100032: bandera_muro012
+    100034: bandera_muro013
+    100036: bandera_muro014
+    100038: bandera_muro015
+    100040: //RootNode
+    100042: defensa_arqueros
+    100044: Estructura_Interior_Puerta_interior
+    100046: Estructura_Interior_Puerta_interior001
+    100048: Estructura_puerta_barrotes_interior
+    100050: Estructura_puerta_barrotes_interior001
+    100052: mastil_muro_horizontal
+    100054: mastil_muro_horizontal001
+    100056: mastil_muro_horizontal002
+    100058: mastil_muro_horizontal003
+    100060: mastil_muro_horizontal004
+    100062: mastil_muro_horizontal005
+    100064: mastil_muro_horizontal006
+    100066: mastil_muro_horizontal007
+    100068: mastil_muro_horizontal008
+    100070: muro
+    100072: suelo_arqueros
+    100074: sujecion_defensa_arqueros
+    100076: sujecion_muro
+    100078: sujeta_banderas
+    100080: tunel
+    400000: antorchas
+    400002: antorchas_MeshPart0
+    400004: antorchas_MeshPart1
+    400006: antorchas_MeshPart2
+    400008: antorchas_MeshPart3
+    400010: antorchas_MeshPart4
+    400012: antorchas_MeshPart5
+    400014: antorchas_MeshPart6
+    400016: antorchas_MeshPart7
+    400018: arco_puerta_exterior
+    400020: arco_puerta_interior
+    400022: bandera_muro005
+    400024: bandera_muro008
+    400026: bandera_muro009
+    400028: bandera_muro010
+    400030: bandera_muro011
+    400032: bandera_muro012
+    400034: bandera_muro013
+    400036: bandera_muro014
+    400038: bandera_muro015
+    400040: //RootNode
+    400042: defensa_arqueros
+    400044: Estructura_Interior_Puerta_interior
+    400046: Estructura_Interior_Puerta_interior001
+    400048: Estructura_puerta_barrotes_interior
+    400050: Estructura_puerta_barrotes_interior001
+    400052: mastil_muro_horizontal
+    400054: mastil_muro_horizontal001
+    400056: mastil_muro_horizontal002
+    400058: mastil_muro_horizontal003
+    400060: mastil_muro_horizontal004
+    400062: mastil_muro_horizontal005
+    400064: mastil_muro_horizontal006
+    400066: mastil_muro_horizontal007
+    400068: mastil_muro_horizontal008
+    400070: muro
+    400072: suelo_arqueros
+    400074: sujecion_defensa_arqueros
+    400076: sujecion_muro
+    400078: sujeta_banderas
+    400080: tunel
+    2300000: antorchas_MeshPart0
+    2300002: antorchas_MeshPart1
+    2300004: antorchas_MeshPart2
+    2300006: antorchas_MeshPart3
+    2300008: antorchas_MeshPart4
+    2300010: antorchas_MeshPart5
+    2300012: antorchas_MeshPart6
+    2300014: antorchas_MeshPart7
+    2300016: arco_puerta_exterior
+    2300018: arco_puerta_interior
+    2300020: bandera_muro005
+    2300022: bandera_muro008
+    2300024: bandera_muro009
+    2300026: bandera_muro010
+    2300028: bandera_muro011
+    2300030: bandera_muro012
+    2300032: bandera_muro013
+    2300034: bandera_muro014
+    2300036: bandera_muro015
+    2300038: defensa_arqueros
+    2300040: Estructura_Interior_Puerta_interior
+    2300042: Estructura_Interior_Puerta_interior001
+    2300044: Estructura_puerta_barrotes_interior
+    2300046: Estructura_puerta_barrotes_interior001
+    2300048: mastil_muro_horizontal
+    2300050: mastil_muro_horizontal001
+    2300052: mastil_muro_horizontal002
+    2300054: mastil_muro_horizontal003
+    2300056: mastil_muro_horizontal004
+    2300058: mastil_muro_horizontal005
+    2300060: mastil_muro_horizontal006
+    2300062: mastil_muro_horizontal007
+    2300064: mastil_muro_horizontal008
+    2300066: muro
+    2300068: suelo_arqueros
+    2300070: sujecion_defensa_arqueros
+    2300072: sujecion_muro
+    2300074: sujeta_banderas
+    2300076: tunel
+    3300000: antorchas_MeshPart0
+    3300002: antorchas_MeshPart1
+    3300004: antorchas_MeshPart2
+    3300006: antorchas_MeshPart3
+    3300008: antorchas_MeshPart4
+    3300010: antorchas_MeshPart5
+    3300012: antorchas_MeshPart6
+    3300014: antorchas_MeshPart7
+    3300016: arco_puerta_exterior
+    3300018: arco_puerta_interior
+    3300020: bandera_muro005
+    3300022: bandera_muro008
+    3300024: bandera_muro009
+    3300026: bandera_muro010
+    3300028: bandera_muro011
+    3300030: bandera_muro012
+    3300032: bandera_muro013
+    3300034: bandera_muro014
+    3300036: bandera_muro015
+    3300038: defensa_arqueros
+    3300040: Estructura_Interior_Puerta_interior
+    3300042: Estructura_Interior_Puerta_interior001
+    3300044: Estructura_puerta_barrotes_interior
+    3300046: Estructura_puerta_barrotes_interior001
+    3300048: mastil_muro_horizontal
+    3300050: mastil_muro_horizontal001
+    3300052: mastil_muro_horizontal002
+    3300054: mastil_muro_horizontal003
+    3300056: mastil_muro_horizontal004
+    3300058: mastil_muro_horizontal005
+    3300060: mastil_muro_horizontal006
+    3300062: mastil_muro_horizontal007
+    3300064: mastil_muro_horizontal008
+    3300066: muro
+    3300068: suelo_arqueros
+    3300070: sujecion_defensa_arqueros
+    3300072: sujecion_muro
+    3300074: sujeta_banderas
+    3300076: tunel
+    4300000: antorchas_MeshPart0
+    4300002: antorchas_MeshPart1
+    4300004: antorchas_MeshPart2
+    4300006: antorchas_MeshPart3
+    4300008: antorchas_MeshPart4
+    4300010: antorchas_MeshPart5
+    4300012: antorchas_MeshPart6
+    4300014: antorchas_MeshPart7
+    4300016: arco_puerta_exterior
+    4300018: arco_puerta_interior
+    4300020: bandera_muro005
+    4300022: bandera_muro008
+    4300024: bandera_muro009
+    4300026: bandera_muro010
+    4300028: bandera_muro011
+    4300030: bandera_muro012
+    4300032: bandera_muro013
+    4300034: bandera_muro014
+    4300036: bandera_muro015
+    4300038: defensa_arqueros
+    4300040: Estructura_Interior_Puerta_interior
+    4300042: Estructura_Interior_Puerta_interior001
+    4300044: Estructura_puerta_barrotes_interior
+    4300046: Estructura_puerta_barrotes_interior001
+    4300048: mastil_muro_horizontal
+    4300050: mastil_muro_horizontal001
+    4300052: mastil_muro_horizontal002
+    4300054: mastil_muro_horizontal003
+    4300056: mastil_muro_horizontal004
+    4300058: mastil_muro_horizontal005
+    4300060: mastil_muro_horizontal006
+    4300062: mastil_muro_horizontal007
+    4300064: mastil_muro_horizontal008
+    4300066: muro
+    4300068: suelo_arqueros
+    4300070: sujecion_defensa_arqueros
+    4300072: sujecion_muro
+    4300074: sujeta_banderas
+    4300076: tunel
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Estructura_Interior_Puerta_interior001Mat
+    second: {fileID: 2100000, guid: 0a1961cd47fef7c4982814a4fe2c4be8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Estructura_Interior_Puerta_interiorMat
+    second: {fileID: 2100000, guid: 46e695064c21cc04f938f759887b054a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Estructura_puerta_barrotes_interior001Mat
+    second: {fileID: 2100000, guid: d17183c118cdeef40a40c2ec738c5370, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Estructura_puerta_barrotes_interiorMat
+    second: {fileID: 2100000, guid: 2824f150feeb50c4ebef974fe811d18f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: antorchasMat
+    second: {fileID: 2100000, guid: 41942a891502b60499fb769287a68588, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: arco_puerta_exteriorMat
+    second: {fileID: 2100000, guid: b0884c557d28be54a8b832e411874435, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: arco_puerta_interiorMat
+    second: {fileID: 2100000, guid: d2d16a316da33634782563f635477575, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bandera_muro005Mat
+    second: {fileID: 2100000, guid: 4ce43a964c1e10b42977965ce18a3689, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bandera_muro008Mat
+    second: {fileID: 2100000, guid: e48ddc997d44f6d468343fe4f7980ce2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bandera_muro009Mat
+    second: {fileID: 2100000, guid: 16db73d3da88afc48a58a25ac6b21b40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bandera_muro010Mat
+    second: {fileID: 2100000, guid: 6bad6df603e6bdc4881a932fd3e697d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bandera_muro011Mat
+    second: {fileID: 2100000, guid: 1a7192b63939fed418ab2cc0b2c14f1a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bandera_muro012Mat
+    second: {fileID: 2100000, guid: aa490ecfb22a29141b0c3f0830c32491, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bandera_muro013Mat
+    second: {fileID: 2100000, guid: a0e362665ef4d34468394c0d2af74bd4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bandera_muro014Mat
+    second: {fileID: 2100000, guid: 57e74fcc1afe43f49ada97691cd4e766, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bandera_muro015Mat
+    second: {fileID: 2100000, guid: 3b4b95ffcf579d3479c0e09f6df4f26c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: defensa_arquerosMat
+    second: {fileID: 2100000, guid: 52e502d18b64b9a4e8581f8d0411d7ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mastil_muro_horizontal001Mat
+    second: {fileID: 2100000, guid: 8e1d6700f554e5a4b96c06f4d9c54751, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mastil_muro_horizontal002Mat
+    second: {fileID: 2100000, guid: de7ad8a54cb57174e99ae7c460937b7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mastil_muro_horizontal003Mat
+    second: {fileID: 2100000, guid: 2cd33f9d618b777488283cb886fc5e61, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mastil_muro_horizontal004Mat
+    second: {fileID: 2100000, guid: e85a3174344d58342bd8dccb079b073f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mastil_muro_horizontal005Mat
+    second: {fileID: 2100000, guid: 85bf034c75d8e3443912f9cfb9a353c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mastil_muro_horizontal006Mat
+    second: {fileID: 2100000, guid: 717297c8df5be234a9efff27ec0394eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mastil_muro_horizontal007Mat
+    second: {fileID: 2100000, guid: e0bcb8d76fe1d7347bfc56ebf025e9b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mastil_muro_horizontal008Mat
+    second: {fileID: 2100000, guid: aeb3d280eab5d14419eff89ee75fe2f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mastil_muro_horizontalMat
+    second: {fileID: 2100000, guid: 7d1b2f4554e71d34d8b34aed2f86d4eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: muroMat
+    second: {fileID: 2100000, guid: 52590e7b7ed9f1245b62b7162dbd2108, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: suelo_arquerosMat
+    second: {fileID: 2100000, guid: bd74674c376d8314aa0563ec5d3b7efb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sujecion_defensa_arquerosMat
+    second: {fileID: 2100000, guid: 1094e16c26dcbd14da9c36044ed1fe4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sujecion_muroMat
+    second: {fileID: 2100000, guid: ceeb39112e5374c43bfcafe7444af891, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sujeta_banderasMat
+    second: {fileID: 2100000, guid: 70e7bf4ced3086a489bd1de5467a2a09, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tunelMat
+    second: {fileID: 2100000, guid: f846deb6292ac344795a881f26cff16e, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
