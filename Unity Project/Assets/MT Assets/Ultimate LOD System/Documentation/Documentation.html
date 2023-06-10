@@ -1,0 +1,1590 @@
+<html>
+
+    <head>
+        <title>Ultimate LOD System - Documentation</title>
+        <link rel="shortcut icon" type="image/png" href="Files/favicon.png" />
+        <link rel="shortcut icon" type="image/png" href="Files/favicon.png" />
+        <meta charset="UTF-8">
+        <!-- #region CSS FORMATATION -->
+        <style>
+            html,
+            body {
+                height: 100%;
+                width: 100%;
+            }
+
+            body {
+                background-color: #686868;
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                font-family: gotham, arial, helvetica, sans-serif;
+                font-size: 14px;
+                color: #303030;
+                padding: 0;
+                margin: 0 auto !important;
+            }
+
+            ::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #888;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+
+            a {
+                text-decoration: none;
+                color: #374f77;
+            }
+
+            a:link {
+                text-decoration: none;
+                color: #374f77;
+            }
+
+            a:hover {
+                color: #374f77;
+                text-decoration: underline dotted #3a505b;
+            }
+
+            a:visited {
+                color: #374f77;
+                text-decoration: none;
+            }
+
+            hr {
+                border: 0;
+                height: 1px;
+                background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(206, 206, 206, 0.75), rgba(0, 0, 0, 0));
+            }
+
+            .topBar {
+                z-index: 2;
+                width: 100%;
+                height: 45px;
+                position: fixed;
+                top: 0px;
+                background-color: #375e9b;
+                -webkit-box-shadow: 0px 2px 16px -2px rgba(0, 0, 0, 0.56);
+                -moz-box-shadow: 0px 2px 16px -2px rgba(0, 0, 0, 0.56);
+                box-shadow: 0px 2px 16px -2px rgba(0, 0, 0, 0.56);
+            }
+
+            .summary {
+                position: fixed;
+                background-color: yellow;
+                left: 0px;
+                overflow: auto;
+                top: 45px;
+                background-color: #f9f9f9;
+                width: 300px;
+                height: 100%;
+                -webkit-box-shadow: 4px 0px 6px -2px rgba(0, 0, 0, 0.56);
+                -moz-box-shadow: 4px 0px 6px -2px rgba(0, 0, 0, 0.56);
+                box-shadow: 4px 0px 6px -2px rgba(0, 0, 0, 0.56);
+            }
+
+            .subBody {
+                margin-top: 45px;
+                margin-left: 300px;
+                padding-left: 5%;
+                padding-right: 5%;
+                overflow: auto;
+                background-color: #ffffff;
+            }
+
+            .content {
+                width: 100%;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+            }
+
+            .summary-title {
+                color: #0c0c0c;
+                margin-top: 20px;
+                margin-bottom: 30px;
+                font-size: 16px;
+                font-weight: bolder;
+            }
+
+            .title-1 {
+                color: #0c0c0c;
+                margin-top: 30px;
+                margin-bottom: 30px;
+                margin-left: 15px;
+                font-size: 20px;
+                font-weight: bolder;
+            }
+
+            ul {
+                list-style-type: circle;
+                font-weight: normal;
+                font-size: 14px;
+            }
+
+            li {
+                margin-top: 8px;
+                margin-bottom: 8px;
+            }
+
+            .video {
+                background-color: #f2f2f2;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                color: #595959;
+                font-style: italic;
+                text-align: center;
+            }
+
+            .image {
+                background-color: #f2f2f2;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                color: #595959;
+                font-style: italic;
+                text-align: center;
+            }
+
+            .footer {
+                margin-top: 200px;
+                margin-bottom: 200px;
+            }
+
+            .script {
+                background-color: #f2f2f2;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                color: #595959;
+                width: auto;
+            }
+
+            textArea {
+                font-family: "Courier New", Courier, monospace;
+                padding: 10px;
+                width: 100%;
+                height: auto;
+                border-radius: 5px;
+                resize: none;
+            }
+
+            table,
+            td,
+            th {
+                border: 1px solid #ddd;
+                text-align: left;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th,
+            td {
+                padding: 10px;
+            }
+
+            img {
+                max-width: 90%;
+            }
+        </style>
+        <!-- #endregion -->
+        <script src="Files/Prism/prism.js"></script>
+        <link rel="stylesheet" href="Files/Prism/prism.css">
+    </head>
+
+    <body>
+        <!-- #region PAGE TOPBAR -->
+        <!-- Topbar -->
+        <div class="topBar">
+            <div style="float: left; height: 45px; margin: 3px;">
+                <img src="Files/MTW.png" height="40px" />
+            </div>
+            <div style="float: left; height: 45px;">
+                <div
+                    style="line-height: 33px; vertical-align: middle; margin-left: 3px; color: #ffffff; font-weight: bold; font-size: 22px;">
+                    Ultimate LOD System Documentation
+                </div>
+                <div
+                    style="line-height: 8px; vertical-align: middle; margin-left: 3px; color: #d3d3d3; font-size: 10px;">
+                    for Unity Engine
+                </div>
+            </div>
+            <div style="float: right; height: 45px;">
+                <div
+                    style="line-height: 16px; vertical-align: middle; margin-right: 10px; color: #d3d3d3; font-size: 10px; text-align: right;">
+                    for support and contact
+                </div>
+                <div
+                    style="line-height: 25px; vertical-align: middle; margin-right: 10px; color: #ffffff; font-weight: bold; font-size: 16px;">
+                    mtassets@windsoft.xyz
+                </div>
+            </div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- Summary -->
+        <div class="summary">
+            <div class="summary-title">
+                <center>Summary of Documentation</center>
+            </div>
+            <ul>
+                <li><a href="#1">What is the Ultimate LOD System</a></li>
+                <li><a href="#2">First steps to use</a></li>
+                <li>How to Generate LODs</li>
+                <ul>
+                    <li><a href="#3">Adding and configuring the ULOD component</a></li>
+                    <li><a href="#4">Generating LODs</a></li>
+                </ul>
+                <li><a href="#5">Undoing all Generated LODs/Updating LODs</a></li>
+                <li><a href="#8a">Viewing which Meshes/GameObjects are being managed, which have created LODs and
+                        which
+                        are under the power of a ULOD
+                        component.</a></li>
+                <li>Incredible Tips That Can Be Useful</li>
+                <ul>
+                    <li><a href="#6">Deactivating the LOD changes and displaying only original meshes temporarily at
+                            runtime</a></li>
+                    <li><a href="#6a">Defining custom meshes for each LOD of your meshes</a></li>
+                    <li><a href="#7">Optimization tips for using ULOD</a></li>
+                    <li><a href="#7aa">How to generate simplified versions of a mesh, without using the "Ultimate Level
+                            Of Detail" component and save as file</a></li>
+                </ul>
+                <li><a href="#7a">Current Limitations of the ULOD</a></li>
+                <li><a href="#8">Settings e Options Of ULOD Component</a></li>
+                <li>Runtime API of Component "Ultimate Level Of Detail"</li>
+                <ul>
+                    <li><a href="#9">Get the LOD level that is currently on display</a></li>
+                    <li><a href="#10">Get the current distance between the LOD and the main camera currently in use</a>
+                    </li>
+                    <li><a href="#10aa">Get the current REAL distance between the LOD and the main camera currently in
+                            use</a>
+                    </li>
+                    <li><a href="#10ab">Obtain the number of LODs generated by a ULOD component</a>
+                    </li>
+                    <li><a href="#10ac">Know if the meshes of a ULOD component are currently culled</a>
+                    </li>
+                    <li><a href="#10ad">Obtain the list of meshes that have been scanned and are under the power of a
+                            ULOD component</a>
+                    </li>
+                    <li><a href="#10ae">Force a ULOD component to disable, showing only original meshes</a>
+                    </li>
+                    <li><a href="#10af">Force a ULOD component to update its LOD and rendering calculations</a>
+                    </li>
+                    <li><a href="#10a">Disable or enable all ULODs in the scene, globally</a>
+                    </li>
+                    <li><a href="#10b">Changing the global LOD distance multiplier</a>
+                    </li>
+                </ul>
+                <li>Runtime API of Component "Ultimate Level Of Detail Meshes"</li>
+                <ul>
+                    <li><a href="#10aaa">Obtain the responsible ULOD component</a></li>
+                    <li><a href="#10aab">Obtain the number of LOs present</a></li>
+                    <li><a href="#10aac">Provide a new custom mesh for a LOD</a></li>
+                    <li><a href="#10aad">Get the mesh that is in some LOD</a></li>
+                </ul>
+                <li>Problems Solution</li>
+                <ul>
+                    <li><a href="#11">Holes in simplified meshes</a></li>
+                    <li><a href="#12">Skinned Mesh Renderers animations not working</a></li>
+                    <li><a href="#14">Objects are not animated correctly after generating LODs</a></li>
+                    <li><a href="#14a">The simulation of LOD changes in Skinned Mesh Renderers does not occur in my
+                            Unity editor</a></li>
+                    <li><a href="#14b">Flat things like walls, planes and squares with few vertices seem to warp as they
+                            turn into LODs</a></li>
+                </ul>
+                <li><a href="#15">Demo Scene</a></li>
+                <li><a href="#16">Contact and Support</a></li>
+            </ul>
+            <br />
+            <br />
+            <br />
+        </div>
+        <!-- Content -->
+        <div class="subBody">
+            <div class="content">
+                <!-- #region Welcome to Ultimate LOD System Documentation! -->
+                <br />
+                <div class="title-1">
+                    Welcome to Ultimate LOD System Documentation!
+                </div>
+                By reading this documentation, you will understand how Ultimate LOD System works and how to use it and
+                get the most out of it. Come on! Make sure that this HTML file is in the same directory as the "Files"
+                folder.
+                This way you will not have problems with formatting and displaying the videos on the page.
+                <br />
+                <br />
+                <div style="padding: 16px; border-radius: 4px; background-color: #ff000050; color: #242424;">
+                    <p>If you still have problems with the tool, even after consulting this documentation, please
+                        contact <b>mtassets@windsoft.xyz</b> for help and support. If you have any questions, problems
+                        or feedback, feel free to contact me! I am always willing to help, open to suggestions and
+                        always do my best to offer a quick and useful service to my customers!</p>
+                </div>
+                <br />
+                <br />
+                <!-- #endregion -->
+
+                <!-- #region What is the Ultimate LOD System -->
+                <div class="title-1" id="1">
+                    What is the Ultimate LOD System
+                </div>
+                Ultimate LOD System is a complete system for managing and creating LODs for your meshes. With ULOD you
+                can
+                automatically generate LOD levels for a mesh hierarchy in your scene, directly from the Editor! After
+                automatically
+                generating all LODs, ULOD will still manage the LOD levels, changing the meshes according to the
+                distance from the
+                camera that is currently displaying an image to the user. All of this automatically. You can customize
+                the amount of LODs that will be generated , the distance that
+                each LOD level should be shown, the percentage of vertices that the meshes will have at each LOD level,
+                etc. ULOD works with static meshes (Mesh Renderers) or animated meshes (Skinned Mesh Renderers).
+                <div class="video">
+                    <center>
+                        <iframe width="80%" height="310px" class="tscplayer_inline" id="embeddedSmartPlayerInstance"
+                            src="Files/Videos/Video-WhatIs/PlayerLocal.html?embedIFrameId=embeddedSmartPlayerInstance"
+                            scrolling="no" frameborder="0" webkitAllowFullScreen mozallowfullscreen
+                            allowFullScreen></iframe>
+                    </center>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region First steps to use -->
+                <div class="title-1" id="2">
+                    First steps to use
+                </div>
+                Before using ULOD, your meshes must meet some requirements...
+                <br />
+                <br />
+                <b>Step 1</b> - All of your meshes (Mesh Filters and Skinned Mesh Renderers) cannot have empty or null
+                meshes.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/1.png" />
+                        <br />
+                        The mesh filter above, has a null mesh, which will cause it to be ignored during the scanning of
+                        the ULOD component, to
+                        generate the LODs.
+                    </center>
+                </div>
+                <b>Step 2</b> - Place the "MainCamera" tag on all the main cameras in your game, avoid placing this tag
+                on cameras that will not cover
+                the entire screen (such as mirror cameras, mini maps, etc.).
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/22.png" />
+                        <br />
+                        This is particularly useful if you are going to use the "MainCamera" camera detection method in
+                        the "Ultimate Level Of
+                        Detail" component.
+                    </center>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region How to Generate LODs: Adding and configuring the ULOD component -->
+                <div class="title-1" id="3">
+                    How to Generate LODs: Adding and configuring the ULOD component
+                </div>
+                To start everything, we must first add the component called "Ultimate Level Of Detail" inside a
+                GameObject.
+                If you want to
+                create LODs for an entire Mesh hierarchy, just add ULOD to the parent GameObject for the entire
+                hierarchy. If you want
+                to generate LODs for a single individual mesh, add the ULOD to the GameObject that contains the
+                MeshFilter or Skinned Mesh Renderer for that
+                individual mesh.
+                <br />
+                <br />
+                <b>Meshed GameObjects hierarchy</b> - By adding ULOD to a GameObject parent of a GameObjects hierarchy
+                with meshes, ULOD will be able to identify all child
+                meshes and recognize them to generate LODs and manage the LODs of all of them.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/2.png" />
+                        <br />
+                        Adding ULOD to a GameObject parent of a GameObjects hierarchy with meshes
+                    </center>
+                </div>
+                <b>To a single mesh</b> - If you want to create LODs from a single mesh, just add the ULOD to the
+                GameObject that contains this mesh.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/3.png" />
+                        <br />
+                        Adding ULOD to a single mesh
+                    </center>
+                </div>
+                <b>Bonus</b> - If you have a mesh hierarchy in GameObjects and a ULOD in the parent GameObject of that
+                hierarchy, but you need to customize the LOD parameters
+                of a mesh individually, you
+                just need to add a ULOD to the GameObject that contains the mesh you want to customize the LOD
+                parameters.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/16.png" />
+                        <br />
+                        Adding ULOD to a child GameObject that contains a mesh
+                    </center>
+                </div>
+                When adding a ULOD to a child GameObject, it will be possible to customize its parameters, and the
+                parameters you define
+                will apply only to that child GameObject. All other child GameObjects of the parent ULOD, which do not
+                contain ULODs,
+                will receive LOD parameters from the parent ULOD.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/17.png" />
+                        <br />
+                        This child ULOD will be identified by the parent ULOD
+                    </center>
+                </div>
+                You can see that the child ULOD has been identified by the parent ULOD, just by clicking on the parent
+                ULOD.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/18.png" />
+                        <br />
+                        Representation of parent ULOD
+                    </center>
+                </div>
+                The ULOD child has been identified by the parent ULOD, so the scan of its parent ULOD and child ULODs
+                will be
+                synchronized. As soon as you start scanning on your parent object, all child ULODs will also start
+                scanning
+                automatically.
+
+                <!-- #endregion -->
+
+                <!-- #region How to Generate LODs: Generating LODs -->
+                <div class="title-1" id="4">
+                    How to Generate LODs: Generating LODs
+                </div>
+                Now that ULOD has been added to your scene, let's do the basic settings and generate all the LODs. ULOD
+                works as follows: After configuring all LOD creation parameters, ULOD will scan GameObjects according to
+                the
+                configuration you define, to find all the meshes that will have LODs created. After scanning,
+                identifying
+                and collecting
+                data for each mesh, it saves all of that cataloged data and then begins creating LOD levels for each
+                mesh. Then these
+                levels of LODs are saved in your project (if you prefer), after that, the LODs are ready. At this
+                point, ULOD will
+                change meshes and LOD levels as the camera rendering them moves away or gets closer. If you need to, you
+                can undo the creation of the LODs and then ULOD will restore all the original meshes to their proper
+                places, erase the LOD levels previously created in your project and erase all saved data that was
+                collected from the
+                scanned meshes.
+                <br />
+                <br />
+                Now, let's go to the configuration and creation of the LODs. See the step by step below to learn how to
+                generate LODs and make ULOD work.
+                <br />
+                <br />
+                <b>Select the mesh scanning mode</b> - Before generating LODs, ULOD needs you to show it how you want
+                the scan to be done. If you added your ULOD to a
+                GameObject parent of a mesh hierarchy, select "Scan In Children GameObjects Only". If you added your
+                ULOD to a single
+                mesh and you do not want ULOD to scan for child GameObjects for mesh, simply select "Scan In This
+                GameObject only".
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/4.png" />
+                        <br />
+                        In the example, the option to scan for meshes on child GameObjects only was selected.
+                    </center>
+                </div>
+                <b>Select the quantity of LODs you want to create, and the quality of each LOD</b> -
+                Select the number of LODs you want to create first. You can customize
+                the quality level
+                that
+                each mesh will have at each LOD level. The lower the "percentage of vertices"
+                the lower the quality of that LOD, the higher the "percentage of vertices", the higher the quality of
+                that LOD.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/5.png" />
+                        <br />
+                        LOD levels that will be automatically generated for each scanned mesh
+                    </center>
+                </div>
+                <b>Select the distance at which each LOD level will appear</b> - Finally, we need to set the minimum
+                distance required for each LOD level to appear. The lower the quality of an LOD
+                level, the greater the minimum distance required for it to appear.
+                <br>
+                <br>
+                Here, you can also define the minimum
+                distance required for culling to occur in the meshes. When culling occurs, all
+                meshes will be deactivated and will no longer be rendered until the camera approaches closer than the
+                distance required
+                for culling, then the meshes will be visible again.
+                <br>
+                <br>
+                In this example we have 4 levels of LOD in total.
+                <br>
+                LOD_0 (it is the original mesh of your model, with all vertices).
+                <br>
+                And then there are the LODs LOD_1, LOD_2 and LOD_3. The higher the level, the lower the mesh quality
+                must be. Therefore, the higher the level, the greater the minimum distance required for that level to be
+                seen by the player.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/6.png" />
+                        <br />
+                        As LOD_0 is the original mesh, it is not possible to customize the minimum distance to see it.
+                        The minimum distance to
+                        view the LOD_0 is 0 units (Unity's unit of measurement, commonly associated with meters).Then
+                        the minimum distance to see LOD_1 is 8 Units, the minimum distance to see LOD_2 is 20 Units and
+                        the minimum
+                        distance to see LOD_3 is 50 Units. As we leave the Culling option enabled, we can select the
+                        minimum distance for culling to occur (we select 60 Units), if
+                        the camera moves away from a distance greater than 60 Units, the meshes have been culled and
+                        will no longer be visible
+                        until the camera stay at a distance of less than 60 Units. If we choose to disable Culling, and
+                        the camera moves away
+                        from a distance greater than 50, the visible LOD will always be LOD_3, culling will
+                        not occur because it is
+                        disabled.
+                    </center>
+                </div>
+                <b>Finally, generating the LODs</b> - Now, just click on the "Scan All Meshes And Generate LODs" button.
+                After that, ULOD will scan all meshes it finds and
+                create LOD levels for each one automatically, and after that your LODs will be ready! The ULOD component
+                will
+                automatically change LOD levels according to the current distance from the camera rendering the meshes.
+                This camera is
+                automatically identified by ULOD.
+                <br>
+                <br>
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/7.png" />
+                        <br />
+                        Representation
+                    </center>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Undoing all Generated LODs/Updating LODs -->
+                <div class="title-1" id="5">
+                    Undoing all Generated LODs/Updating LODs
+                </div>
+                The process of undoing the creation of LODs is useful when you really just want to undo all the LODs
+                created, or when
+                you have updated things in the original meshes, and would like to bring all of that to the LOD levels
+                as well.
+                <br>
+                <br>
+                <b>Undoing the creation of LODs</b> - To undo, click on the "Delete All Meshes Data Scanned And LODs"
+                button. After that, ULOD will erase all data collected
+                from the original meshes and will delete all levels of created LODs (of course, keeping all of its
+                original meshes
+                intact) and will restore all original meshes back to Mesh Filters and Skinned Mesh Renderers. After
+                undoing the creation of LODs, ULOD will also not perform any management or change of LOD meshes. You
+                can do a new mesh scan and generate new LODs whenever you want.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/8.png" />
+                        <br />
+                        Representation
+                    </center>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Viewing which Meshes/GameObjects are being managed, which have created LODs and which are under the power of a ULOD component -->
+                <div class="title-1" id="8a">
+                    Viewing which Meshes/GameObjects are being managed, which have created LODs and which are under
+                    the power of a ULOD
+                    component
+                </div>
+                As you may know by now, after you click the button to generate the LODs, ULOD scans according to your
+                settings and finds
+                the meshes, then it collects data from the meshes and generates levels of LOD for each mesh,
+                automatically. After that,
+                the creation of the LODs is completed and the ULOD manages the LODs, that is, it changes the LOD levels
+                according to the
+                distance from the camera that renders that ULOD component. You can see which GameObjects/Meshes are
+                currently linked
+                to the ULOD component since the last scan.
+                <br>
+                <br>
+                <b>Meshes Found In Last Scan</b> - Use this area to view all meshes and GameObjects that are currently
+                linked to the ULOD component, since the last scan.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/10.png" />
+                        <br />
+                        Representation
+                    </center>
+                </div>
+                You can view a count of the total items linked to this ULOD...
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/11.png" />
+                        <br />
+                        Representation
+                    </center>
+                </div>
+                You can view information such as the name of the GameObject that contains the mesh, the name of the
+                original mesh and
+                format, and if you click on the "GameObject" button, ULOD will show you where that GameObject is.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/12.png" />
+                        <br />
+                        Representation
+                    </center>
+                </div>
+                In addition, you can find out if it is an animated or static mesh and the name of mesh file.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/13.png" />
+                        <br />
+                        Representation
+                    </center>
+                </div>
+                ULOD will also show you if that mesh ceases to exist or your GameObject ceases to exist.
+                <!-- #endregion -->
+
+                <!-- #region Incredible Tips That Can Be Useful: Deactivating the LOD changes and displaying only original meshes temporarily at runtime -->
+                <div class="title-1" id="6">
+                    Incredible Tips That Can Be Useful: Deactivating the LOD changes and displaying only original meshes
+                    temporarily at runtime
+                </div>
+                In some situations, we need to disable LODs and display only the original quality meshes, no matter how
+                far these meshes
+                are from the camera. We have as an example, a shooting game, where there are weapons with a system of
+                sight with zoom.
+                <br>
+                <br>
+                Let's say the player picks up his weapon, looks at the horizon, switch to his aim and zoom out. We would
+                not like to
+                display a lot of low quality meshes (LOD_3) to the player, correct?
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/9.png" />
+                        <br />
+                        Player using sight and seeing distant models, however, in original quality
+                    </center>
+                </div>
+                For this, ULOD has a special static C# API, with the function of disabling LOD management of all ULOD
+                components in
+                your scene. Thus, while the player is looking in the crosshairs, you can keep LOD management off, and
+                when the player
+                returns to normal view, you can activate LOD management again and all ULOD components will switch back
+                to LOD meshes
+                according to the distance from the current camera.
+                <div class="script">
+                    <center>
+                        Script C#
+                        <br />
+                        <br />
+                    </center>
+                    <pre>
+<code class="language-csharp">
+using UnityEngine;
+using MTAssets.UltimateLODSystem;
+                        
+public class Test : MonoBehaviour {
+                        
+    void Start () {
+        //Disable all ULOD components LODs management and restore original meshes for all ULODs
+        UltimateLevelOfDetailGlobal.EnableGlobalULodSystem(false);
+                
+        //Enable all ULOD components LODs management
+        UltimateLevelOfDetailGlobal.EnableGlobalULodSystem(true);
+                
+        //is Global ULOD components management current enabled?
+        bool isEnabled = UltimateLevelOfDetailGlobal.isGlobalULodSystemEnabled();
+    }
+}
+</code>
+</pre>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Incredible Tips That Can Be Useful: Defining custom meshes for each LOD of your meshes -->
+                <div class="title-1" id="6a">
+                    Incredible Tips That Can Be Useful: Defining custom meshes for each LOD of your meshes
+                </div>
+                Sometimes, we have our own LOD meshes and we do not need ULOD to generate meshes automatically.
+                Therefore, ULOD has a
+                function that allows you to customize the meshes that will be displayed in each LOD of your meshes. In
+                this topic, you can take a look at how to do this.
+                <br>
+                <br>
+                Whenever ULOD does a scan, it adds a component called "Ultimate Level Of Detail Meshes" to all meshes
+                scanned by it. In
+                this component, you can view the LOD group, provide new meshes for each level in the LOD group and also
+                do other useful
+                things. This component also has a C# API so you can do these things at runtime too, if you prefer.
+                <br>
+                <br>
+                If you delete the scan and LOD meshes generated by ULOD, these components will be
+                removed
+                automatically as well.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/15.png" />
+                        <br />
+                        Representation
+                    </center>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Incredible Tips That Can Be Useful: Optimization tips for using ULOD -->
+                <div class="title-1" id="7">
+                    Incredible Tips That Can Be Useful: Optimization tips for using ULOD
+                </div>
+                ULOD has been tested and is a package focused on optimizing your project. ULOD has been tested with
+                thousands of
+                GameObjects in one scene, and has been able to transition LODs smoothly, without causing bottlenecks or
+                performance
+                drops, however, some practices must be taken into account to keep your game even more optimized and even
+                more functional
+                and intuitive to perform maintenance in the future. Some of them are...
+                <br>
+                <br>
+                <b>Avoid many unnecessary GameObjects</b> - A golden tip is, the less active GameObjects your scene has,
+                the more optimized it will be. So, the tip here is, avoid
+                your camera seeing MANY GameObjects on the screen, and whenever possible combine your meshes of your
+                scene or characters
+                in addition to reducing the count of GameObjects in the scene, also reducing the DrawCalls generated by
+                each mesh in
+                each GameObject different. You can use <b><a
+                        href="https://assetstore.unity.com/packages/templates/systems/easy-mesh-combiner-mt-138805"
+                        target="_blank">Easy Mesh Combiner MT</a></b> to combine
+                the static meshes of your scene
+                (Mesh Filters and Mesh Renderers) into just
+                one mesh. And you can use the <b><a
+                        href="https://assetstore.unity.com/packages/templates/systems/skinned-mesh-combiner-mt-135422"
+                        target="_blank">Skinned Mesh Combiner MT</a></b> to combine all the
+                meshes of your
+                animated
+                characters into one
+                mesh. This can really bring huge performance gains, and after combining your meshes, you will only have
+                1 mesh, so just
+                use ULOD to create LODs from that mesh. You will experience an explosion of performance in your game
+                after doing this!
+                <br>
+                <br>
+                <b>Avoid adding ULOD to each of your meshes</b> - As previously stated, ULOD was created with a focus on
+                performance and is optimized for hundreds of GameObjects,
+                however, as a complement to the previous topic, it is recommended that you avoid adding MANY ULOD
+                components to your
+                scene, more precisely, avoid placing a ULOD for each mesh in your scene. The most recommended is that
+                you reduce the
+                amount of GameObjects in your scene as much as possible, combine your meshes and add ULOD to a group of
+                Meshes, so that
+                a single ULOD component will manage the LODs of several meshes that are nearby and this will make things
+                faster and
+                allow you to invest in adding even more meshes to your scene. You can place as many ULODs as you want in
+                your scene, but the tip here is, avoid placing unnecessary ULODs, so that you
+                can add even more elements to your scene. For example, if you have a set of 10 trees that are close
+                together, instead of
+                adding a ULOD for each tree, group all these trees into a single GameObject (and if possible combine
+                their meshes into
+                just one) and place the ULOD in the GameObject parent of those meshes. So you will have a single ULOD
+                managing the LOD
+                of these 10 trees!
+                <!-- #endregion -->
+
+                <!-- #region Incredible Tips That Can Be Useful: How to generate simplified versions of a mesh, without using the "Ultimate Level Of Detail" component and save as file -->
+                <div class="title-1" id="7aa">
+                    Incredible Tips That Can Be Useful: How to generate simplified versions of a mesh, without using the
+                    "Ultimate Level Of Detail" component and save as file
+                </div>
+                Sometimes we just need to generate simplified versions (with less vertices) of a mesh, but we don't
+                necessarily need an
+                LOD controller for this. With this need in mind, the "Mesh Simplifier" window was created and introduced
+                in the Ultimate
+                LOD System. You can now generate simplified versions of a mesh and save it in the same directory to
+                which the original
+                mesh is located, automatically and in an organized manner.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/21.png" />
+                        <br />
+                        Representation
+                    </center>
+                </div>
+                First, you just need to open the simplification window. It can be opened by right clicking on a
+                GameObject in your scene
+                and then "Simplify Mesh", or by right clicking on a model file and then "Open With Mesh Simplifier" or
+                simply go to
+                "Tools > Ultimate LOD System > Mesh Simplifier Tool".
+                <br>
+                <br>
+                To use, you simply need to provide a GameObject that contains a mesh, or a mesh directly, so choose the
+                simplification
+                parameters and click on "Generate Simplified Meshes". The simplified meshes will be saved in the same
+                directory where
+                the original mesh file is located.
+                <!-- #endregion -->
+
+                <!-- #region Current Limitations of the ULOD -->
+                <div class="title-1" id="7a">
+                    Current Limitations of the ULOD
+                </div>
+                ULOD works well, however, like any tool it has its limitations. See below...
+                <br>
+                <br>
+                <b>Meshes with vertices occupied the same space</b> - Vertices that occupy the same space (or a position
+                very very very close to another vertically atomically speaking) can
+                be a problem for the internal mesh simplification algorithm. That said, meshes that have this
+                characteristic can present
+                hole problems in their LODs. ULOD will try its best to simplify these loops without any problems, but
+                this is something
+                that can happen.
+                <!-- #endregion -->
+
+                <!-- #region Settings e Options Of ULOD -->
+                <div class="title-1" id="8">
+                    Settings e Options Of ULOD
+                </div>
+                In the table below, you can see all the parameters and configurations of the ULOD component.
+                <br />
+                <br />
+                <table>
+                    <tr>
+                        <th width="100px">Name</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Mode of Meshes Scanning</td>
+                        <td>How ULOD will use it to scan and find loops to generate LODs.</td>
+                    </tr>
+                    <tr>
+                        <td>Scan Inactive Too</td>
+                        <td>If you choose to scan for meshes in child GameObjects, enable this and ULOD will scan even
+                            meshes that are in disabled
+                            GameObjects.</td>
+                    </tr>
+                    <tr>
+                        <td>GameObjects to Ignore During Scan</td>
+                        <td>You can register GameObjects so that they are ignored during scanning, so even if they have
+                            meshes, meshes are not
+                            included in the processing of LODs.</td>
+                    </tr>
+                    <tr>
+                        <td>Save Generated LODs In Assets</td>
+                        <td>If you activate this option, ULOD will save all levels of LODs generated from their original
+                            fabrics, in your project
+                            files. Note that: If you are going to create prefabs, it is recommended that you leave this
+                            option enabled.</td>
+                    </tr>
+                    <tr>
+                        <td>Levels Of Details To Generate</td>
+                        <td>Here you define the amount of LODs you want to generate.</td>
+                    </tr>
+                    <tr>
+                        <td>Percent Of Vertices In LOD X</td>
+                        <td>The quality level of each the LOD_X mesh.</td>
+                    </tr>
+                    <tr>
+                        <td>Skinned Anim Compat Mode</td>
+                        <td>
+                            In rare cases, some models may experience animation problems in the LOD loops. To prevent
+                            this problem, enable this
+                            option. This option does not require or reduce your game's performance, however, if you
+                            notice that some animation of
+                            your character is behaving unexpectedly in LOD loops, try to disable this.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Prevent Artifacts Or Deform</td>
+                        <td>
+                            If this option is enabled, ULOD will use an internal algorithm to prevent its LODs from
+                            becoming too deformed or showing
+                            distortions or artifacts. The purpose of this function is to prevent the reduction of
+                            vertices from spoiling the shape
+                            of your model. This can make the rate of reduction of vertices lower, in other words, it
+                            sacrifices the reduction of
+                            vertices due to the maintenance of the good shape of your LOD.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Force Of Simplification</td>
+                        <td>
+                            The recommended simplification force is "Normal". However, if you have a mesh with thousands
+                            of vertices, the Normal
+                            force may not be enough to reduce many vertices in that mesh. The "Normal" force works very
+                            well with the "Prevent
+                            Artifacts Or Deform" option and can reduce many vertices, however, if you need to reduce
+                            even more vertices, it may be
+                            necessary to increase the simplification force (and of course, reduce the percentage of
+                            vertices at each LOD level).
+                            Forces greater than "Normal" do not work with the "Prevent Artifacts Or Deform" option
+                            enabled.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Culling Mode</td>
+                        <td>
+                            Here you choose the Culling method that will be performed when the camera has a certain
+                            distance defined by you. The
+                            most recommended is "CullingMeshes".
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Min Distance To View LOD X</td>
+                        <td>
+                            In these options, you can customize the minimum distance required for each LOD level to be
+                            seen by the camera that is
+                            rendered in the mesh. The higher the LOD level (the lower the mesh quality), the greater the
+                            minimum distance must be
+                            for that level to be seen.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Min Distance Of View For Cull</td>
+                        <td>
+                            Here you define the minimum distance for Culling to occur in your meshes.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Draw Gizmo On This Pivot</td>
+                        <td>
+                            To calculate the distance between the mesh and the camera rendering the mesh, ULOD uses as
+                            point A, the pivot of the
+                            GameObject that ULOD is in and as point B, the pivot of the camera that is rendering the
+                            GameObject ULOD. If this option
+                            is activated, the ULOD will show with a sphere, the position where the pivot of this ULOD
+                            is. (Works only in the
+                            Editor).
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Editor Skinned LODs Change</td>
+                        <td>
+                            This option forces the Editor to exchange LODs on Skinned fabrics. This can cause crashes in
+                            some versions of Unity
+                            Editor. Even if this option is enabled or disabled, exchanges of LODs in Skinned fabrics
+                            will normally occur in the
+                            final game built.
+                        </td>
+                    </tr>
+                </table>
+                <!-- #endregion -->
+
+                <!-- #region Runtime API of Component "Ultimate Level Of Detail": Get the LOD level that is currently on display -->
+                <div class="title-1" id="9">
+                    Runtime API of Component "Ultimate Level Of Detail": Get the LOD level that is currently on display
+                </div>
+                To see the level of LOD that a ULOD component is currently displaying, at run time, just use the API
+                below.
+                <br>
+                <br>
+                <div class="script">
+                    <center>Script C#<br /><br /></center>
+                    <pre>
+<code class="language-csharp">
+using UnityEngine;
+using MTAssets.UltimateLODSystem;
+
+public class Test : MonoBehaviour {
+
+    //Some ULOD component
+    public UltimateLevelOfDetail ulod;
+
+    void Start () {
+        //Get current LOD level of component
+        int currentLodLevel = ulod.GetCurrentLodLevel();
+    }
+}
+</code></pre>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Runtime API of Component "Ultimate Level Of Detail": Get the current distance between the LOD and the main camera currently in use -->
+                <div class="title-1" id="10">
+                    Runtime API of Component "Ultimate Level Of Detail": Get the current distance between the ULOD and
+                    the main camera currently in
+                    use
+                </div>
+                To find out the distance between a ULOD component and the camera that is rendering it, use the method
+                below. Note that this method is affected by the ULOD global distance multiplier. This method returns a
+                value multiplied by the
+                ULOD global distance multiplier. If you want a real value, use the "GetCurrentRealCameraDistance()"
+                method for that.
+                <br>
+                <br>
+                <div class="script">
+                    <center>Script C#<br /><br /></center>
+                    <pre>
+<code class="language-csharp">
+using UnityEngine;
+using MTAssets.UltimateLODSystem;
+
+public class Test : MonoBehaviour {
+
+    //Some ULOD component
+    public UltimateLevelOfDetail ulod;
+
+    void Start () {
+        //Get current distance between ulod component (Point A) and camera (Point B)
+        float distanceBetweenUlodAndCamera = ulod.GetCurrentCameraDistance();
+    }
+}
+</code></pre>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Runtime API of Component "Ultimate Level Of Detail": Get the current REAL distance between the LOD and the main camera currently in use -->
+                <div class="title-1" id="10aa">
+                    Runtime API of Component "Ultimate Level Of Detail": Get the current REAL distance between the LOD
+                    and the main camera currently in use
+                    use
+                </div>
+                To find out the distance between a ULOD component and the camera that is rendering it, use the method
+                below. Note that this method is not affected by the global distance multiplier. It returns a real
+                distance value between the
+                ULOD component and the camera that renders it.
+                <br>
+                <br>
+                <div class="script">
+                    <center>Script C#<br /><br /></center>
+                    <pre>
+<code class="language-csharp">
+using UnityEngine;
+using MTAssets.UltimateLODSystem;
+                
+public class Test : MonoBehaviour {
+                
+    //Some ULOD component
+    public UltimateLevelOfDetail ulod;
+                
+    void Start () {
+        //Get current distance between ulod component (Point A) and camera (Point B)
+        float realDistanceBetweenUlodAndCamera = ulod.GetCurrentRealCameraDistance();
+    }
+}
+</code></pre>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Runtime API of Component "Ultimate Level Of Detail": Obtain the number of LODs generated by a ULOD componente -->
+                <div class="title-1" id="10ab">
+                    Runtime API of Component "Ultimate Level Of Detail": Obtain the number of LODs generated by a ULOD
+                    component
+                </div>
+                To obtain the number of LODs generated for each loop that is under the power of a ULOD component, use
+                the method below.
+                <br>
+                <br>
+                <div class="script">
+                    <center>Script C#<br /><br /></center>
+                    <pre>
+ <code class="language-csharp">
+using UnityEngine;
+using MTAssets.UltimateLODSystem;
+                                
+public class Test : MonoBehaviour {
+                                
+    //Some ULOD component
+    public UltimateLevelOfDetail ulod;
+                                
+    void Start () {
+        //Get number of LODs
+        int numberOfLods = ulod.GetNumberOfLodsGenerated();
+    }
+}
+</code></pre>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Runtime API of Component "Ultimate Level Of Detail": Know if the meshes of a ULOD component are currently culled -->
+                <div class="title-1" id="10ac">
+                    Runtime API of Component "Ultimate Level Of Detail": Know if the meshes of a ULOD component are
+                    currently culled
+                </div>
+                To find out if the fabrics that are under the power of a ULOD component are currently being culled, use
+                the method
+                below.
+                <br>
+                <br>
+                <div class="script">
+                    <center>Script C#<br /><br /></center>
+                    <pre>
+ <code class="language-csharp">
+using UnityEngine;
+using MTAssets.UltimateLODSystem;
+                                
+public class Test : MonoBehaviour {
+                                
+    //Some ULOD component
+    public UltimateLevelOfDetail ulod;
+                                
+    void Start () {
+        //is meshes culled now?
+        bool isCulled = ulod.isScannedMeshesCurrentCulled();
+    }
+}
+</code></pre>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Runtime API of Component "Ultimate Level Of Detail": Obtain the list of meshes that have been scanned and are under the power of a ULOD component -->
+                <div class="title-1" id="10ad">
+                    Runtime API of Component "Ultimate Level Of Detail": Obtain the list of meshes that have been
+                    scanned and are under the power of a ULOD component
+                </div>
+                To have a list of meshes that have been scanned by the ULOD component and are currently under the power
+                of the ULOD
+                component, use the method below.
+                <br>
+                <br>
+                This method will return you with a list of "Ultimate Level Of Detail Meshes" components. Each component
+                refers to a mesh and each
+                component is in a
+                GameObject next to the mesh to which it refers.
+                <br>
+                <br>
+                <div class="script">
+                    <center>Script C#<br /><br /></center>
+                    <pre>
+ <code class="language-csharp">
+using UnityEngine;
+using MTAssets.UltimateLODSystem;
+                                
+public class Test : MonoBehaviour {
+                                
+    //Some ULOD component
+    public UltimateLevelOfDetail ulod;
+                                
+    void Start () {
+        //get the list of meshes
+        UltimateLevelOfDetailMeshes[] meshList = ulod.GetListOfAllMeshesScanned();
+    }
+}
+</code></pre>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Runtime API of Component "Ultimate Level Of Detail": Force a ULOD component to disable, showing only original meshes -->
+                <div class="title-1" id="10ae">
+                    Runtime API of Component "Ultimate Level Of Detail": Force a ULOD component to disable, showing only
+                    original meshes
+                </div>
+                To stop a ULOD component from working by showing only the original meshes, use the method below.
+                <br>
+                <br>
+                <div class="script">
+                    <center>Script C#<br /><br /></center>
+                    <pre>
+<code class="language-csharp">
+using UnityEngine;
+using MTAssets.UltimateLODSystem;
+                                                
+public class Test : MonoBehaviour {
+                                                
+    //Some ULOD component
+    public UltimateLevelOfDetail ulod;
+                                                
+    void Start () {
+        //Disable the ULOD
+        ulod.ForceDisableLodChangesInThisComponent(true);
+
+        //is this ULOD current disabled?
+        bool isDisabled = ulod.isThisComponentForcedToDisableLodChanges();
+    }
+}
+</code></pre>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Runtime API of Component "Ultimate Level Of Detail": Force a ULOD component to update its LOD and rendering calculations -->
+                <div class="title-1" id="10af">
+                    Runtime API of Component "Ultimate Level Of Detail": Force a ULOD component to update its LOD and
+                    rendering calculations
+                </div>
+                ULOD updates the rendering of LODs and only changes LODs when it is really necessary, that is, if the
+                distance from the
+                camera changes, if the LOD has changed, etc. ULOD does several checks to ensure that it will not make
+                unnecessary LOD
+                changes while consuming performance for no reason. But there are times when we need to show changes more
+                precisely, such
+                as when you change a mesh in the "Ultimate Level Of Detail Meshes" component. In doing so, the new mesh
+                you provided in
+                that component will only be used the next time ULOD changes LODs, so use the method below to force ULOD
+                to update the
+                display of LODs and rendering calculations.
+                <br>
+                <br>
+                <div class="script">
+                    <center>Script C#<br /><br /></center>
+                    <pre>
+<code class="language-csharp">
+using UnityEngine;
+using MTAssets.UltimateLODSystem;
+                                                                
+public class Test : MonoBehaviour {
+                                                                
+    //Some ULOD component
+    public UltimateLevelOfDetail ulod;
+                                                                
+    void Start () {
+        //Disable the ULOD
+        ulod.ForceThisComponentToUpdateLodsRender();
+    }
+}
+</code></pre>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Runtime API of Component "Ultimate Level Of Detail": Disable or enable all ULODs in the scene, globally -->
+                <div class="title-1" id="10a">
+                    Runtime API of Component "Ultimate Level Of Detail": Disable or enable all ULODs in the scene,
+                    globally
+                </div>
+                As quoted <b><a href="#6">here</a></b> (please read this), you can disable or enable LODs management for
+                all ULOD components in
+                your scene, just
+                with a global parameter. When disabling this management, all ULODs in your scene will display only the
+                original meshes,
+                when reactivating this management, all ULODs in your scene will again display the LODs currently
+                corresponding to the
+                distance between them and the camera that renders them.
+                <!-- #endregion -->
+
+                <!-- #region Runtime API of Component "Ultimate Level Of Detail": Changing the global LOD distance multiplier -->
+                <div class="title-1" id="10b">
+                    Runtime API of Component "Ultimate Level Of Detail": Changing the global LOD distance multiplier
+                </div>
+                The Ultimate LOD System allows you to define a global distance multiplier (which automatically applies
+                to all Ultimate
+                LOD System components in all scenes). This multiplier affects the distances between the LODs of the ULOD
+                components. The
+                default value is "1.0", that is, if you have defined that the minimum distance to render LOD_1 is 20
+                Units in a ULOD
+                component, then that LOD_1 will only be rendered when the camera is 20 Units away from the ULOD
+                component .
+                <br>
+                <br>
+                If you change this multiplier to "2.0", then LOD_1 will be rendered with 10 Units, if you change to
+                "0.0" then LODs will
+                never be rendered and the original meshes will always be displayed. This distance multiplier also
+                applies to Culling
+                distances.
+                <br>
+                <br>
+                This can be relatively useful if you want to put a LOD quality setting in your game, where strong
+                machines don't need
+                the LOD system to work the same way as they do on a cell phone for example.
+                <br>
+                <br>
+                <div class="script">
+                    <center>Script C#<br /><br /></center>
+                    <pre>
+<code class="language-csharp">
+using UnityEngine;
+using MTAssets.UltimateLODSystem;
+                
+    public class Test : MonoBehaviour {
+                
+        void Start () {
+            //Define a new multiplier
+            UltimateLevelOfDetailGlobal.SetGlobalLodDistanceMultiplier(1.5f);
+            
+            //Get current multiplier
+            float multiplier = UltimateLevelOfDetailGlobal.GetGlobalLodDistanceMultiplier();
+        }
+    }
+</code></pre>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Runtime API of Component "Ultimate Level Of Detail Meshes": Obtain the responsible ULOD component -->
+                <div class="title-1" id="10aaa">
+                    Runtime API of Component "Ultimate Level Of Detail Meshes": Obtain the responsible ULOD component
+                </div>
+                To obtain the ULOD component responsible for an Ultimate Level Of Detail Meshes component, use the
+                method below.
+                <br>
+                <br>
+                <div class="script">
+                    <center>Script C#<br /><br /></center>
+                    <pre>
+<code class="language-csharp">
+using UnityEngine;
+using MTAssets.UltimateLODSystem;
+                                                
+public class Test : MonoBehaviour {
+                                                
+    //Some ULOD Meshes component
+    public UltimateLevelOfDetailMeshes ulodMeshes;
+                                                
+    void Start () {
+        //Get responsible ULOD component
+        UltimateLevelOfDetail ulod = ulodMeshes.GetResponsibleUlodComponent();
+    }
+}
+</code></pre>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Runtime API of Component "Ultimate Level Of Detail Meshes": Obtain the number of LOs present -->
+                <div class="title-1" id="10aab">
+                    Runtime API of Component "Ultimate Level Of Detail Meshes": Obtain the number of LOs present
+                </div>
+                To obtain the number of meshes present in the LOD group of an Ultimate Level Of Detail Meshes component,
+                use the method
+                below.
+                <br>
+                <br>
+                <div class="script">
+                    <center>Script C#<br /><br /></center>
+                    <pre>
+<code class="language-csharp">
+using UnityEngine;
+using MTAssets.UltimateLODSystem;
+                                                
+public class Test : MonoBehaviour {
+                                                
+    //Some ULOD Meshes component
+    public UltimateLevelOfDetailMeshes ulodMeshes;
+                                                
+    void Start () {
+        //LOD quantity
+        int lodsCount = ulodMeshes.GetQuantityOfLods();
+    }
+}
+</code></pre>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Runtime API of Component "Ultimate Level Of Detail Meshes": Provide a new custom mesh for a LOD -->
+                <div class="title-1" id="10aac">
+                    Runtime API of Component "Ultimate Level Of Detail Meshes": Provide a new custom mesh for a LOD
+                </div>
+                The Ultimate LOD System allows you to provide your own meshes for use in LODs. To do this at runtime,
+                just use the
+                method below. Your mesh will be used in the LOD you want.
+                below.
+                <br>
+                <br>
+                You can only provide meshes for levels 0 through 8 of LODs.
+                <br>
+                <br>
+                <div class="script">
+                    <center>Script C#<br /><br /></center>
+                    <pre>
+<code class="language-csharp">
+using UnityEngine;
+using MTAssets.UltimateLODSystem;
+                                                                
+public class Test : MonoBehaviour {
+                                                                
+    //Some ULOD Meshes component
+    public UltimateLevelOfDetailMeshes ulodMeshes;
+    //Some mesh
+    public Mesh aMesh;
+                                                                
+    void Start () {
+        //Set a new mesh to be used in level 5 of LOD in this Ultimate Level Of Detail Meshes
+        ulodMeshes.SetMeshOfThisLodGroup(5, aMesh);
+    }
+}
+</code></pre>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Runtime API of Component "Ultimate Level Of Detail Meshes": Get the mesh that is in some LOD -->
+                <div class="title-1" id="10aad">
+                    Runtime API of Component "Ultimate Level Of Detail Meshes": Get the mesh that is in some LOD
+                </div>
+                With the method below, you can obtain the mesh that is currently being used at a level in the LOD group
+                of an Ultimate
+                Level of Detail Meshes component.
+                <br>
+                <br>
+                <div class="script">
+                    <center>Script C#<br /><br /></center>
+                    <pre>
+<code class="language-csharp">
+using UnityEngine;
+using MTAssets.UltimateLODSystem;
+                                                                
+public class Test : MonoBehaviour {
+                                                                
+    //Some ULOD Meshes component
+    public UltimateLevelOfDetailMeshes ulodMeshes;
+                                                                
+    void Start () {
+        //Get mesh of LOD 5 of this Ultimate Level Of Detail Meshes
+        Mesh lod5Mesh = ulodMeshes.GetMeshOfThisLodGroup(5);
+    }
+}
+</code></pre>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Problems Solution: Holes in simplified meshes -->
+                <div class="title-1" id="11">
+                    Problems Solution: Holes in simplified meshes
+                </div>
+                The holes in the meshes may appear due to vertices that are occupying the same place as other vertices
+                in your mesh, but
+                if this does not happen to your mesh, try to activate the option "Prevent Artifacts Or Deform" before
+                generating your
+                LODs.
+                <!-- #endregion -->
+
+                <!-- #region Problems Solution: Skinned Mesh Renderers animations not working -->
+                <div class="title-1" id="12">
+                    Problems Solution: Skinned Mesh Renderers animations not working
+                </div>
+                If this happens, it may be due to some problem with the binding of your bones. This is usually fixed by
+                enabling the
+                "Skinned Anims Compat Mode" option.
+                <!-- #endregion -->
+
+                <!-- #region Problems Solution: Objects are not animated correctly after generating LODs -->
+                <div class="title-1" id="14">
+                    Problems Solution: Objects are not animated correctly after generating LODs
+                </div>
+                The most likely cause for this is that you have objects that are parents under bones that move with the
+                animations.
+                There is currently no way to deal with this limitation, and the best way to do this is to use lod groups
+                nested with a
+                ULOD component. Any object you know to be a parent under a bone must have its own LOD Group with a ULOD.
+                <!-- #endregion -->
+
+                <!-- #region Problems Solution: The simulation of LOD changes in Skinned Mesh Renderers does not occur in my Unity editor -->
+                <div class="title-1" id="14a">
+                    Problems Solution: The simulation of LOD changes in Skinned Mesh Renderers does not occur in my
+                    Unity editor
+                </div>
+                The Ultimate LOD System is fully compatible with Skinned meshes. ULOD will scan and change LODs of
+                Skinned meshes
+                without any problems, however, LOD changes simulation in the Unity Editor is disabled by default. This
+                is because some
+                versions of Unity have limitations that cause Editor to crash if skinned mesh LODs are changed.
+                <br>
+                <br>
+                Even if the LOD changes simulation is disabled in the Editor, if you click on the ULOD component that
+                manages the LODs
+                of the Skinned Mesh Renderer meshes, you will see that it shows the LOD that is currently being
+                rendered. So you have a sense of distance for each LOD.
+                <br>
+                <br>
+                It is important to note that even if the LOD changes simulation is disabled by default in the Editor,
+                if you compile
+                and create your game (regardless of platform) the LOD changes will work without problems, and the
+                meshes will be
+                changed for LODs according to the distance from the camera. The non-functioning of the LOD changes
+                simulation only
+                applies to the Editor.
+                <br>
+                <br>
+                Now that the important thing has been explained, it is also important to know, that there is an option
+                to force the
+                Ultimate LOD System to run the LOD changes simulation in the Editor. Just activate the "Editor Skinned
+                LODs Change"
+                option in the "Ultimate Level Of Detail" component and the Ultimate LOD System will do the LOD changes
+                simulations in
+                the Editor as well. But remember that this can make some versions of Unity crash.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/19.png" />
+                        <br />
+                        Representation
+                    </center>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Problems Solution: Flat things like walls, planes and squares with few vertices seem to warp as they
+                            turn into LODs -->
+                <div class="title-1" id="14b">
+                    Problems Solution: Flat things like walls, planes and squares with few vertices seem to warp as they
+                    turn into LODs
+                </div>
+                The Ultimate LOD System will always try to maintain the original
+                shape of the meshes, be it a character, car, etc, but this can happen with thin walls (in walls or parts
+                of
+                houses that are
+                composed of few vertices). The vertex reduction
+                algorithm of the Ultimate LOD System will always try to render the vertices as much as possible, so when
+                flat meshes
+                that have few vertices pass through the algorithm, they have the vertices reduced from being square to
+                being triangles
+                for example, if a wall very thin composed of 4 vertices only, passes through the algorithm, the
+                algorithm will leave the
+                wall with 3 vertices, transforming it into a triangle and so on.
+                <div class="image">
+                    <center>
+                        <img src="Files/Images/20.png" />
+                        <br />
+                        Representation. After configuring ULOD to ignore wall meshes, the problem will not occur again.
+                        As the wall meshes have few vertices,
+                        they will have a negligible impact on the game's performance, even if they do not have generated
+                        LODs.
+                    </center>
+                </div>
+                The best way to do this is to configure the "Ultimate Level Of Detail" component to ignore parts such as
+                houses, or the
+                walls of houses, to avoid deformations in these areas, so ULOD will generate LODs without deforming
+                important parts of a
+                construction.
+                <!-- #endregion -->
+
+                <!-- #region Demo Scene -->
+                <div class="title-1" id="15">
+                    Demo Scene
+                </div>
+                You can enter the demo scene "DemoScene (Example Of Use)" to see how the Ultimate LOD System
+                works closely! The scene contains a small environment that you can use to test the tool quickly.
+                <!-- #endregion -->
+
+                <!-- #region Contact and Support -->
+                <div class="title-1" id="16">
+                    Contact and Support
+                </div>
+                Congratulations, you have reached the end of the documentation! Thanks for reading. If you need
+                to contact me for any difficulty, feature suggestion, bug fix, question or support, just contact
+                me through my email below!
+                <br>
+                <br />
+                <center>
+                    <font style="font-size: 18px; color: #00771d;">mtassets@windsoft.xyz</font>
+                </center>
+                <!-- #endregion -->
+
+                <div class="footer">
+                    <center>
+                        <hr />
+                        <br />
+                        <br />
+                        <small>
+                            On-line links
+                            <br />
+                            <br />
+                            <a href="https://www.youtube.com/channel/UCqAgiYBwAWajjFUqyJ6_xyw?view_as=subscriber"
+                                target="_blank">Youtube Channel</a>
+                            •
+                            <a href="https://assetstore.unity.com/publishers/40306" target="_blank">MT
+                                Assets</a>
+                            •
+                            <a href="https://windsoft.xyz/ForBrowsers/MTAssets/Home.php" target="_blank">Site</a>
+                        </small>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
